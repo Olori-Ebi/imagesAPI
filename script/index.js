@@ -3,8 +3,6 @@ function main(){
     document.addEventListener('DOMContentLoaded', () => {
         const url = 'https://swapi.dev/api/people';
         return fetch(url).then((response) => response.json()).then(data => {
-            console.log(data.results);
-            
             let container = document.querySelector('.container');
             const { results } = data
             const images = ['image1.jpg','image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpeg', 'image6.jpg', 'image7.jpg', 'image8.png', 'image9.jpg', 'image10.jpg']
@@ -12,11 +10,8 @@ function main(){
                 
                 let image_container = document.createElement("div");
                 image_container.classList.add("image__container");
-                
-                // image_container.setAttribute("id", `trigger${index}`);
 
                let output= `
-               
                     <div class="trigger">
                         <img src="./img/${images[index]}" alt="" class="img" />
                         <div class="card__container">
@@ -33,17 +28,17 @@ function main(){
                                <h3>Character Details</h3>
                             </header>
                             <div class="details">
-                                            <h4>Name: </h4>
-                                            <h4 class="height">${element.name}</h4>
-                                        </div>
-                                        <div class="details">
-                                            <h4>Gender: </h4>
-                                            <h4 class="height">${element.gender}</h4>
-                                        </div>
-                                        <div class="details">
-                                            <h4>Height: </h4>
-                                            <h4 class="height">${element.height}</h4>
-                                        </div>
+                                <h4>Name: </h4>
+                                <h4 class="height">${element.name}</h4>
+                            </div>
+                            <div class="details">
+                                <h4>Gender: </h4>
+                                <h4 class="height">${element.gender}</h4>
+                            </div>
+                            <div class="details">
+                                <h4>Height: </h4>
+                                <h4 class="height">${element.height}</h4>
+                            </div>
                         </div>
                     </div>
                 
@@ -53,21 +48,16 @@ function main(){
 
                 let trigger = document.getElementById(`trigger${index}`); 
                 let modal = document.getElementById(`modal${index}`);
-                console.log(modal);
-            const closeButton = document.getElementById(`close-button${index}`);
+                const closeButton = document.getElementById(`close-button${index}`);
+                
                 closeButton.addEventListener("click", (event)=>{
-                    console.log( index, " closeButton clicked.")
                     modal.classList.toggle("show-modal")
                     event.stopPropagation();
                 });
 
                 trigger.addEventListener("click", ()=>{
-                    console.log( index, " trigger clicked.")
                     modal.classList.toggle("show-modal")});
 
-                // trigger.forEach(element => 
-                //     element.addEventListener("click", ()=>modal.classList.toggle("show-modal"))
-                // );
             });
              
         }).catch(err => console.log('error',err)); 
